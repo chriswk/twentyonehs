@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 92c90353975c1df5927bde7567e1ef4335b738175f5ea1da6e688f67ed88525e
+-- hash: c72cebf244029e10b732f461f6045a0b11e440bd0a1bb5e388fa856128550ae9
 
 name:           finnblackjackhs
 version:        0.1.0.0
@@ -21,6 +21,7 @@ extra-source-files:
 executable finnblackjackhs
   main-is: Main.hs
   other-modules:
+      Blackjack
       Card
       Deck
       Paths_finnblackjackhs
@@ -35,8 +36,10 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      BlackjackSpec
       CardSpec
       DeckSpec
+      Blackjack
       Card
       Deck
       Main

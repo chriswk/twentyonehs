@@ -6,8 +6,8 @@ import           Text.Regex
 
 type Deck = [Card]
 
-deck :: Deck
-deck = [Card suit rank | suit <- [Clubs .. Spades], rank <- [Two .. Ace]]
+fullDeck :: Deck
+fullDeck = [Card suit rank | suit <- [Clubs .. Spades], rank <- [Two .. Ace]]
 
 split :: Regex
 split = mkRegex ",\\s?"
