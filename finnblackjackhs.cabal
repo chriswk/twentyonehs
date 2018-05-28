@@ -1,0 +1,61 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 043bfab66581368d41b09e87c1ea4478b4d88f3194db9f0dc5072a0bbaf8821c
+
+name:           finnblackjackhs
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/chriswk/finnblackjackhs#readme
+author:         Christopher Kolstad
+maintainer:     haskell@chriswk.no
+copyright:      2018 CK
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    README.md
+
+executable finnblackjackhs
+  main-is: Main.hs
+  other-modules:
+      Card
+      Deck
+      Paths_finnblackjackhs
+  hs-source-dirs:
+      src
+  build-depends:
+      attoparsec
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      CardSpec
+      DeckSpec
+      Card
+      Deck
+      Main
+      Paths_finnblackjackhs
+  hs-source-dirs:
+      test
+      src
+  cpp-options: -DTEST
+  build-depends:
+      HUnit >=1.6.0.0
+    , QuickCheck
+    , attoparsec
+    , base >=4.7 && <5
+    , generic-random
+    , hspec ==2.*
+    , interpolate
+    , mockery >=0.3
+    , random
+    , template-haskell
+    , temporary
+    , yaml >=0.0.28
+  default-language: Haskell2010

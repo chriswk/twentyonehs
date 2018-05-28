@@ -1,0 +1,40 @@
+name:                finnblackjackhs
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/chriswk/finnblackjackhs#readme
+license:             BSD3
+author:              Christopher Kolstad
+maintainer:          haskell@chriswk.no
+copyright:           2018 CK
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - attoparsec
+
+executables:
+  finnblackjackhs:
+    source-dirs:      src
+    main:             Main.hs
+
+tests:
+  spec:
+    cpp-options: -DTEST
+    main: Spec.hs
+    source-dirs:
+      - test
+      - src
+    dependencies:
+      - hspec == 2.*
+      - QuickCheck
+      - temporary
+      - mockery >= 0.3
+      - interpolate
+      - template-haskell
+      - HUnit >= 1.6.0.0
+      - yaml >= 0.0.28
+      - random
+      - generic-random
