@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 043bfab66581368d41b09e87c1ea4478b4d88f3194db9f0dc5072a0bbaf8821c
+-- hash: 5da402328e684509e407be5d5182fec2048d00864415b842844adb3a5a8c91c7
 
 name:           finnblackjackhs
 version:        0.1.0.0
@@ -50,7 +50,6 @@ test-suite spec
     , QuickCheck
     , attoparsec
     , base >=4.7 && <5
-    , generic-random
     , hspec ==2.*
     , interpolate
     , mockery >=0.3

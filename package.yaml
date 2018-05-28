@@ -37,4 +37,3 @@ tests:
       - HUnit >= 1.6.0.0
       - yaml >= 0.0.28
       - random
-      - generic-random
