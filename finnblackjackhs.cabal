@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5da402328e684509e407be5d5182fec2048d00864415b842844adb3a5a8c91c7
+-- hash: 92c90353975c1df5927bde7567e1ef4335b738175f5ea1da6e688f67ed88525e
 
 name:           finnblackjackhs
 version:        0.1.0.0
@@ -27,8 +27,8 @@ executable finnblackjackhs
   hs-source-dirs:
       src
   build-depends:
-      attoparsec
-    , base >=4.7 && <5
+      base >=4.7 && <5
+    , regex-compat
   default-language: Haskell2010
 
 test-suite spec
@@ -48,12 +48,12 @@ test-suite spec
   build-depends:
       HUnit >=1.6.0.0
     , QuickCheck
-    , attoparsec
     , base >=4.7 && <5
     , hspec ==2.*
     , interpolate
     , mockery >=0.3
     , random
+    , regex-compat
     , template-haskell
     , temporary
     , yaml >=0.0.28
