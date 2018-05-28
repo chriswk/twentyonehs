@@ -24,7 +24,7 @@ data Player = Player
   }
 
 instance Show Player where
-  show p = show (name p) ++ ": " ++ (prettyPrintDeck (hand p))
+  show p = id (name p) ++ ": " ++ (prettyPrintDeck (reverse (hand p)))
 
 mkPlayer :: String -> Int -> Hand -> Player
 mkPlayer name drawLimit = Player name (playerStrategy drawLimit) PlayerT
@@ -36,12 +36,15 @@ playerStrategy :: Int -> Player -> Game -> Bool
 playerStrategy hitLimit player game =
   not (hasBlackjack player) &&
   not (hasBlackjack (dealer game)) &&
-  not (isBust player) && playerScore player <= hitLimit
+  not (isBust player) && playerScore player < hitLimit
 
 dealerStrategy :: Player -> Game -> Bool
 dealerStrategy dealer game =
   not (isBust dealer) &&
-  not (hasBlackjack dealer) && playerScore dealer <= playerScore (player game)
+  not (isBust (player game)) &&
+  not (hasBlackjack dealer) &&
+  not (hasBlackjack (player game)) &&
+  playerScore dealer <= playerScore (player game)
 
 isBust :: Player -> Bool
 isBust p = playerScore p > 21
@@ -76,8 +79,8 @@ scoreRank _     = 10
 initialDeal :: Game -> Game
 initialDeal game =
   let (s1:d1:s2:d2:xs) = deck game
-      sam' = (player game) {hand = [s1, s2]}
-      dealer' = (dealer game) {hand = [d1, d2]}
+      sam' = (player game) {hand = [s2, s1]}
+      dealer' = (dealer game) {hand = [d2, d1]}
       deck' = xs
   in game {player = sam', dealer = dealer', deck = deck'}
 
@@ -101,22 +104,15 @@ drawUntilDone game player =
           else game
   in game'
 
-play :: Game -> (Player, Game)
-play game =
+playInt :: Game -> (Player, Game)
+playInt game =
   let firstPhase = initialDeal game
-      afterPlayer =
-        trace
-          ("Phase is: " ++ show firstPhase)
-          drawUntilDone
-          firstPhase
-          (player firstPhase)
-      afterDealer =
-        trace
-          ("Player has drawn: " ++ show afterPlayer)
-          drawUntilDone
-          afterPlayer
-          (dealer afterPlayer)
-  in trace ("Dealer has drawn: " ++ show afterDealer) decideWinner afterDealer
+      afterPlayer = drawUntilDone firstPhase (player firstPhase)
+      afterDealer = drawUntilDone afterPlayer (dealer afterPlayer)
+  in decideWinner afterDealer
+
+play :: Deck -> (Player, Game)
+play deck = playInt $ Game (mkPlayer "sam" 17 []) (mkDealer []) deck
 
 decideWinner :: Game -> (Player, Game)
 decideWinner game =

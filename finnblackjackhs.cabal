@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c72cebf244029e10b732f461f6045a0b11e440bd0a1bb5e388fa856128550ae9
+-- hash: 3fe4e7e741f4f3fb167da74bfd8d7dfb921e3b04d20c482cdfadf068e052c0e3
 
 name:           finnblackjackhs
 version:        0.1.0.0
@@ -29,6 +29,7 @@ executable finnblackjackhs
       src
   build-depends:
       base >=4.7 && <5
+    , random
     , regex-compat
   default-language: Haskell2010
 

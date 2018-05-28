@@ -77,28 +77,28 @@ spec =
             let
                 initialDeck = parseDeck "HA,SA,HK,SK"
                 game = mkEmptyGame { deck = initialDeck }
-                (w, g) = play game
+                (w, g) = playInt game
                 in
                 (name w) `shouldBe` "sam"
         it "Dealer wins when both players start bust" $ do
             let
                 initialDeck = parseDeck "HA,SA,CA,DA"
                 game = mkEmptyGame { deck = initialDeck }
-                (w, g) = play game
+                (w, g) = playInt game
                 in
                     (name w) `shouldBe` "dealer"
         it "Sam always wins if he has 21" $ do
             let
                 initialDeck = parseDeck "HA,SK,H5,HK,S5,C5"
                 game = mkEmptyGame { deck = initialDeck }
-                (w, g) = play game
+                (w, g) = playInt game
                 in
                 (name w) `shouldBe` "sam"
         it "Dealer wins when he can beat sam within 21" $ do
             let
                 d = parseDeck "SK,HK,H8,C2,C3,C5"
                 game = mkEmptyGame { deck = d }
-                (w, g) = play game
+                (w, g) = playInt game
                 in
                     (name w) `shouldBe` "dealer"
 
